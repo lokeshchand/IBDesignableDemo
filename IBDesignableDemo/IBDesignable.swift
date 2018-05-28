@@ -74,6 +74,15 @@ class ButtonExt: UIButton
 
 @IBDesignable class textFieldExt: UITextField
 {
+    
+    @IBInspectable var leftImage: UIImage?
+        {
+        didSet
+        {
+            updateView()
+        }
+    }
+    
     @IBInspectable var leftPadding: CGFloat = 0
     {
         didSet
@@ -123,8 +132,7 @@ class ButtonExt: UIButton
             imageView.image = image
             imageView.tintColor = tintColor
             var width = leftPadding + 20
-            //This is For Two Sided Corner Radius
-            view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+            
             if borderStyle == UITextBorderStyle.none || borderStyle == UITextBorderStyle.line
             {
                 width = width + 5
@@ -133,6 +141,9 @@ class ButtonExt: UIButton
             let view = UIView(frame: CGRect(x: 0, y: 0, width: width, height: 20))
             view.addSubview(imageView)
             leftView = view
+            
+            //This is For Two Sided Corner Radius
+            view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         }
         else
         {
